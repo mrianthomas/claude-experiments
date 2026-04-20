@@ -1,0 +1,142 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red:    #c0392b;
+  --cream:  #fdf6ec;
+  --dark:   #2c2c2c;
+  --mid:    #666;
+  --border: #ddd;
+  --radius: 8px;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+/* ── Header ─────────────────────────────── */
+header {
+  padding: 12px 20px;
+  background: var(--red);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+header h1 { font-size: 1.25rem; white-space: nowrap; }
+header .tagline { font-size: 0.82rem; opacity: 0.85; flex: 1; min-width: 180px; }
+
+#stats {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  white-space: nowrap;
+  flex-wrap: wrap;
+}
+
+#stats .sep { opacity: 0.5; }
+
+#btn-report {
+  background: #fff;
+  color: var(--red);
+  border: none;
+  border-radius: var(--radius);
+  padding: 5px 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+#btn-report:hover { opacity: 0.85; }
+
+/* ── Map ─────────────────────────────────── */
+#map { flex: 1; }
+
+/* ── Popup ───────────────────────────────── */
+.popup-inner { max-width: 240px; font-size: 0.82rem; line-height: 1.4; }
+.popup-inner .retailer { font-weight: 700; font-size: 0.9rem; color: var(--red); margin-bottom: 4px; }
+.popup-inner .postcode { font-size: 0.75rem; color: var(--mid); margin-bottom: 6px; }
+.popup-inner .excerpt  { margin-bottom: 6px; }
+.popup-inner .meta     { font-size: 0.72rem; color: var(--mid); }
+.popup-inner a         { color: var(--red); }
+
+/* ── Modal ───────────────────────────────── */
+#modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999;
+  padding: 16px;
+}
+#modal-overlay.hidden { display: none; }
+
+#modal {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#modal h2 { font-size: 1.1rem; }
+#modal p  { font-size: 0.85rem; color: var(--mid); }
+
+#modal label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-top: 4px;
+}
+#modal .req { color: var(--red); }
+
+#modal textarea,
+#modal input,
+#modal select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-family: inherit;
+  background: var(--cream);
+}
+#modal textarea { resize: vertical; }
+
+.modal-actions {
+  display: flex; gap: 8px; justify-content: flex-end;
+  margin-top: 8px;
+}
+
+button {
+  border: none; border-radius: var(--radius);
+  padding: 8px 18px; font-size: 0.88rem; font-weight: 600;
+  cursor: pointer; transition: opacity 0.15s;
+}
+button:hover { opacity: 0.85; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+#btn-submit  { background: var(--red); color: #fff; }
+.secondary   { background: var(--border); color: var(--dark); }
+
+.error  { color: var(--red);  font-size: 0.8rem; }
+.hidden { display: none !important; }
+
+/* ── Toast ───────────────────────────────── */
+#toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  background: var(--dark); color: #fff;
+  padding: 10px 20px; border-radius: 99px;
+  font-size: 0.85rem; z-index: 99999;
+  opacity: 0; transition: opacity 0.3s;
+  pointer-events: none;
+}
+#toast.show { opacity: 1; }

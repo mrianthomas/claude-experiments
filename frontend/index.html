@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mince Pie Monitor 🥧</title>
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- MarkerCluster -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
+  <!-- Supabase (for realtime updates) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header>
+    <h1>🥧 Mince Pie Monitor</h1>
+    <p class="tagline">Tracking early mince pie sightings across the UK</p>
+    <div id="stats">
+      <span id="stat-total">— sightings</span>
+      <span class="sep">·</span>
+      <span id="stat-earliest">loading…</span>
+      <span class="sep">·</span>
+      <button id="btn-report">Report a sighting</button>
+    </div>
+  </header>
+
+  <div id="map"></div>
+
+  <!-- Manual submission modal -->
+  <div id="modal-overlay" class="hidden">
+    <div id="modal">
+      <h2>Report a sighting</h2>
+      <p>Spotted mince pies in shops? Tell us where!</p>
+
+      <label for="f-text">What did you see? <span class="req">*</span></label>
+      <textarea id="f-text" rows="3"
+        placeholder="e.g. Mince pies already on the shelves at Tesco in SW1A 1AA — it's only August!"></textarea>
+
+      <label for="f-postcode">Postcode (if not in text above)</label>
+      <input id="f-postcode" type="text" placeholder="e.g. SW1A 1AA" maxlength="8" />
+
+      <label for="f-retailer">Retailer (if not in text above)</label>
+      <select id="f-retailer">
+        <option value="">— select —</option>
+        <option>Aldi</option>
+        <option>Asda</option>
+        <option>B&amp;M</option>
+        <option>Boots</option>
+        <option>Co-op</option>
+        <option>Costco</option>
+        <option>Greggs</option>
+        <option>Home Bargains</option>
+        <option>Iceland</option>
+        <option>Lidl</option>
+        <option>M&amp;S</option>
+        <option>Morrisons</option>
+        <option>Poundland</option>
+        <option>Sainsbury's</option>
+        <option>Spar</option>
+        <option>Tesco</option>
+        <option>Waitrose</option>
+        <option>Other</option>
+      </select>
+
+      <div class="modal-actions">
+        <button id="btn-cancel" class="secondary">Cancel</button>
+        <button id="btn-submit">Submit sighting</button>
+      </div>
+      <p id="form-error" class="error hidden"></p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
